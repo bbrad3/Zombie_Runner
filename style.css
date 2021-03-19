@@ -3,12 +3,43 @@ body {
     text-align: center;
 }
 
+#gameTitle {
+    font-size: 3rem;
+    margin: 20px auto;
+    height: 56px;
+}
+
 #description {
-    width: 80%;
-    margin: 0 auto;
+    width: 700px;
+    height: 80px;
+    margin: 10px auto;
 }
 
 canvas {
     border: 2px solid black;
     background-color: rgb(139, 150, 141);
+}
+
+#winGame, #loseGame {
+    width: 701px;
+    height: 501px;
+    margin: 0 auto;
+    position: absolute;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#winGame {
+    top: 188px;
+    left: calc((100vw / 2) - (701px / 2));
+    opacity: 0;
+}
+
+#loseGame {
+    top: 188px;
+    left: calc((100vw / 2) - (701px / 2));
+    opacity: 0;
 }

@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Zombie Runner</h1>
+    <h1 id="gameTitle">Zombie Runner</h1>
     <div id="description">
         <p>The user of the game plays as a survivor in a post-apocoliptic, zombie infested, landscape. The survivor is tasked with venturing into the world to find valuable items in order to stay alive.</p>
-        <p>Use the keyboard arrow-keys to move your player around the board.</p>
+        <p>Use the a, s, w, d to move your player around the board.</p>
     </div>
     
     <canvas width="700px" height="500px">
         Gameboard
     </canvas>
+
+    <div id="winGame">
+        <h1>You WIN!</h1>
+    </div>
+    <div id="loseGame">
+        <h1>You LOSE!</h1>
+    </div>
 
 <script type="module" src="./JS/app.js"></script>
 </body>

@@ -63,7 +63,9 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
     - [x] When servivor collides with valuable => valuable is removed from game
 - [x] Create a seperate js file for classes and link to app.js
 - [x] Check for game win or lose by creating gameStatus function
-    - [] Set different views for win/lose
+    - [x] Set different views for win/lose
+- [] Impliment diagonal movement
+- [] Impliment a reset button
 - [] Impliment the 'flashlight'
     - [] Flashlight radius is centered around player
     - [] Gameboard is black outside flashlight radius

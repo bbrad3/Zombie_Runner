@@ -3,6 +3,8 @@ console.log('hello from app.js')
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
+const winMsg = document.querySelector('#winGame')
+const loseMsg = document.querySelector('#loseGame')
 
 // CANVAS SETUP
 const canvasWidth = getComputedStyle(canvas).width
@@ -20,13 +22,13 @@ document.addEventListener('keydown', playerMovement)
 
 // player movement
 function playerMovement(e) {
-    if(e.key === 'ArrowUp') {
+    if(e.key === 'w') {
         survivor.y -= survivor.speed
-    } else if(e.key === 'ArrowDown') {
+    } else if(e.key === 's') {
         survivor.y += survivor.speed
-    } else if(e.key === 'ArrowRight') {
+    } else if(e.key === 'd') {
         survivor.x += survivor.speed
-    } else if(e.key === 'ArrowLeft') {
+    } else if(e.key === 'a') {
         survivor.x -= survivor.speed
     }
 }
@@ -49,9 +51,11 @@ function checkCollision(body) {
 function gameStatus() {
     if(survivor.alive && survivor.itemsCollected === 1) {
         console.log('YOU WIN!')
+        winMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
     } else if(!survivor.alive) {
         console.log('GAME OVER!')
+        loseMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
     }
 }
