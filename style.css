@@ -1,7 +1,14 @@
 body {
     background-color: aliceblue;
+    text-align: center;
+}
+
+#description {
+    width: 80%;
+    margin: 0 auto;
 }
 
 canvas {
     border: 2px solid black;
+    background-color: rgb(139, 150, 141);
 }

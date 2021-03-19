@@ -43,7 +43,7 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 
 
 ## MVP Checklist
-- [] Create a static gameboard using HTML, CSS, Canvas
+- [x] Create a static gameboard using HTML, CSS, Canvas
 - [] Create a class for squares representing the player, zombies, and valuables
     - [] (x, y, w, h, color) render method
     - [] Create the survivor
