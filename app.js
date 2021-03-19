@@ -51,6 +51,17 @@ class Rectangle {
         context.fillStyle = this.color
         context.fillRect(this.x, this.y, this.w, this.h)
     }
+
+    hasCollided(other) {
+        const hitOnX = this.rightEdge() >= other.leftEdge() && this.leftEdge() <= other.rightEdge()
+        const hitOnY = this.bottomEdge() >= other.topEdge() && this.topEdge() < other.bottomEdge()
+
+        if(hitOnX && hitOnY) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 class Zombie extends Rectangle {
@@ -87,12 +98,10 @@ function playerMovement(e) {
     }
 }
 
-function handleCollision(zombie) {
-    const hitOnX = survivor.rightEdge() >= zombie.leftEdge() && survivor.leftEdge() <= zombie.rightEdge()
-    const hitOnY = survivor.bottomEdge() >= zombie.topEdge() && survivor.topEdge() < zombie.bottomEdge()
-    if(hitOnX && hitOnY) {
+function checkCollision(body) {
+    if(survivor.hasCollided(body)){
         survivor.alive = false
-        console.log('true hit!')
+        console.log('You lose, game over')
     }
 }
 
@@ -104,7 +113,7 @@ setInterval(() => {
     survivor.render()
     zombies.forEach(zombie => {
         zombie.render()
-        handleCollision(zombie)
+        checkCollision(zombie)
     })
     console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`)
 }, 50)
