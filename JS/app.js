@@ -42,15 +42,22 @@ function checkCollision(body) {
             survivor.itemsCollected++
             valuable.color = '#00000000'
             return true
-            console.log('ITEM COLLECTED!')
         }
     }
 }
 
-
+function gameStatus() {
+    if(survivor.alive && survivor.itemsCollected === 1) {
+        console.log('YOU WIN!')
+        clearInterval(GAME_LOOP)
+    } else if(!survivor.alive) {
+        console.log('GAME OVER!')
+        clearInterval(GAME_LOOP)
+    }
+}
 
 // GAME LOOP
-setInterval(() => {
+const GAME_LOOP = setInterval(() => {
     // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -58,16 +65,18 @@ setInterval(() => {
     zombies.forEach(zombie => {
         zombie.render()
         if(checkCollision(zombie)) {
-            console.log('GAME OVER!')
+            console.log('The zombies got you! You dead.')
         }
     })
     survivor.render()
 
     // checkCollision options
     if(checkCollision(valuable)) {
-        console.log('YOU WIN!')
+        context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
+        console.log('ITEM COLLECTED!')
     }
     valuable.render()
+    gameStatus()
     console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`)
 }, 50)
 
