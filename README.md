@@ -51,6 +51,8 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - [x] Impliment a game loop (fps)
     - [x] The loop clears the screen and re-renders the objects on the screen
     - [x] Display survivor position(x, y) in console
+- [x] Create a Zombie class that extends Rectangle class
+    - [x] Create a few zombies
 - [] Create a handleCollision function
     - [] Handle collisions with zombies
         - [] If survivor collides with zombie => you lose!

@@ -29,8 +29,23 @@ class Rectangle {
     }
 }
 
+class Zombie extends Rectangle {
+    constructor(x, y) {
+        super(x, y, 20, 30, 'red')
+    }
+}
+
 // new Survivor!
 const survivor = new Rectangle(60, 50, 20, 30, 'green')
+
+// Zombies!
+const zombies = [
+    new Zombie(350, 50),
+    new Zombie(260, 170),
+    new Zombie(570, 170),
+    new Zombie(420, 380),
+    new Zombie(60, 350),
+]
 
 // get keyboard inputs from user
 document.addEventListener('keydown', playerMovement)
@@ -54,5 +69,6 @@ function playerMovement(e) {
 setInterval(() => {
     context.clearRect(0, 0, canvas.width, canvas.height)
     survivor.render()
+    zombies.forEach(zombie => zombie.render())
     console.log('survivorOrigin', `${survivor.x}, ${survivor.y}`)
 }, 50)
