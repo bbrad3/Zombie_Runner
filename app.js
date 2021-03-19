@@ -24,6 +24,7 @@ class Rectangle {
         this.color = color
         this.speed = speed
         this.alive = true
+        this.itemsCollected = 0
     }
     center() {
         const xCoord = (this.x + (this.x/2))
@@ -55,9 +56,14 @@ class Rectangle {
     hasCollided(other) {
         const hitOnX = this.rightEdge() >= other.leftEdge() && this.leftEdge() <= other.rightEdge()
         const hitOnY = this.bottomEdge() >= other.topEdge() && this.topEdge() < other.bottomEdge()
+        
 
         if(hitOnX && hitOnY) {
-            return true
+            if(other.constructor === Zombie) {
+                return [true, 'zombie']
+            } else if(other.constructor === Valuable) {
+                return [true, 'valuable']
+            }
         } else {
             return false
         }
@@ -67,6 +73,12 @@ class Rectangle {
 class Zombie extends Rectangle {
     constructor(x, y) {
         super(x, y, 20, 30, 'red', 8)
+    }
+}
+
+class Valuable extends Rectangle {
+    constructor(x, y) {
+        super(x, y, 20, 20, 'yellow', 0)
     }
 }
 
@@ -81,6 +93,9 @@ const zombies = [
     new Zombie(420, 380),
     new Zombie(60, 350),
 ]
+
+// Valuable item!
+const valuable = new Valuable(310, 450)
 
 // get keyboard inputs from user
 document.addEventListener('keydown', playerMovement)
@@ -99,9 +114,15 @@ function playerMovement(e) {
 }
 
 function checkCollision(body) {
-    if(survivor.hasCollided(body)){
-        survivor.alive = false
-        console.log('You lose, game over')
+    const collisionStats = survivor.hasCollided(body)
+    if(collisionStats[0]){
+        if(collisionStats[1] === 'zombie') {
+            survivor.alive = false
+            console.log('GAME OVER!')
+        } else if(collisionStats[1] === 'valuable'){
+            survivor.itemsCollected++
+            console.log('ITEM COLLECTED!')
+        }
     }
 }
 
@@ -109,8 +130,12 @@ function checkCollision(body) {
 
 // GAME LOOP
 setInterval(() => {
+    // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
+    // render objects
     survivor.render()
+    valuable.render()
+    checkCollision(valuable)
     zombies.forEach(zombie => {
         zombie.render()
         checkCollision(zombie)
