@@ -14,7 +14,6 @@ const context = canvas.getContext('2d')
 console.log(context)
 
 // ================================
-
 // class for squares
 class Rectangle {
     constructor(x, y, w, h, color) {
@@ -32,4 +31,28 @@ class Rectangle {
 
 // new Survivor!
 const survivor = new Rectangle(60, 50, 20, 30, 'green')
-survivor.render() // we have a survivor!
+
+// get keyboard inputs from user
+document.addEventListener('keydown', playerMovement)
+
+// player movement
+const playerSpeed = 10
+function playerMovement(e) {
+    if(e.key === 'ArrowUp') {
+        survivor.y -= playerSpeed
+    } else if(e.key === 'ArrowDown') {
+        survivor.y += playerSpeed
+    } else if(e.key === 'ArrowRight') {
+        survivor.x += playerSpeed
+    } else if(e.key === 'ArrowLeft') {
+        survivor.x -= playerSpeed
+    }
+}
+
+// GAME LOOP
+
+setInterval(() => {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    survivor.render()
+    console.log('survivorOrigin', `${survivor.x}, ${survivor.y}`)
+}, 50)

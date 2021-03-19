@@ -47,10 +47,10 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - [x] Create a class for squares representing the player, zombies, and valuables
     - [x] (x, y, w, h, color) render method
     - [x] Create the survivor
-- [] Add an eventListeners to keyboard arrows and impliment logic to get the player moving around the screen
-- [] Impliment a game loop (fps)
-    - [] The loop clears the screen and re-renders the objects on the screen
-    - [] Display survivor position(x, y) in console
+- [x] Add an eventListeners to keyboard arrows and impliment logic to get the player moving around the screen
+- [x] Impliment a game loop (fps)
+    - [x] The loop clears the screen and re-renders the objects on the screen
+    - [x] Display survivor position(x, y) in console
 - [] Create a handleCollision function
     - [] Handle collisions with zombies
         - [] If survivor collides with zombie => you lose!
