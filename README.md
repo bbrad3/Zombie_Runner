@@ -59,8 +59,10 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
         - [x] Give each Rectangle the collision state by refactoring collision function
     - [x] Create a valuable and handle collisions with valuable
         - [x] If survivor collides with valuable => you win!
-    - [] When survivor collides with zombie => player is removed from game
-    - [] When servivor collides with valuable => valuable is removed from game
+    - [x] When survivor collides with zombie => player is removed from game
+    - [x] When servivor collides with valuable => valuable is removed from game
+- [] Create a seperate js file for classes and link to app.js
+- [] Check for game win or lose and set different view
 - [] Impliment the 'flashlight'
     - [] Flashlight radius is centered around player
     - [] Gameboard is black outside flashlight radius

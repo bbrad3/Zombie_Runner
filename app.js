@@ -118,9 +118,12 @@ function checkCollision(body) {
     if(collisionStats[0]){
         if(collisionStats[1] === 'zombie') {
             survivor.alive = false
-            console.log('GAME OVER!')
+            survivor.color = '#00000000'
+            return true
         } else if(collisionStats[1] === 'valuable'){
             survivor.itemsCollected++
+            valuable.color = '#00000000'
+            return true
             console.log('ITEM COLLECTED!')
         }
     }
@@ -132,13 +135,20 @@ function checkCollision(body) {
 setInterval(() => {
     // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
-    // render objects
-    survivor.render()
-    valuable.render()
-    checkCollision(valuable)
+
+    // check collision and determine render
     zombies.forEach(zombie => {
         zombie.render()
-        checkCollision(zombie)
+        if(checkCollision(zombie)) {
+            console.log('GAME OVER!')
+        }
     })
+    survivor.render()
+
+    // checkCollision options
+    if(checkCollision(valuable)) {
+        console.log('YOU WIN!')
+    }
+    valuable.render()
     console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`)
 }, 50)
