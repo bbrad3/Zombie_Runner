@@ -53,8 +53,8 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
     - [x] Display survivor position(x, y) in console
 - [x] Create a Zombie class that extends Rectangle class
     - [x] Create a few zombies
-- [] Create a handleCollision function
-    - [] Handle collisions with zombies
+- [x] Create a handleCollision function
+    - [x] Handle collisions with zombies
         - [] If survivor collides with zombie => you lose!
     - [] Handle collisions with valuables
         - [] If survivor collides with valuable => you win!
