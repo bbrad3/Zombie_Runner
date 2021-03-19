@@ -44,9 +44,9 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 
 ## MVP Checklist
 - [x] Create a static gameboard using HTML, CSS, Canvas
-- [] Create a class for squares representing the player, zombies, and valuables
-    - [] (x, y, w, h, color) render method
-    - [] Create the survivor
+- [x] Create a class for squares representing the player, zombies, and valuables
+    - [x] (x, y, w, h, color) render method
+    - [x] Create the survivor
 - [] Add an eventListeners to keyboard arrows and impliment logic to get the player moving around the screen
 - [] Impliment a game loop (fps)
     - [] The loop clears the screen and re-renders the objects on the screen
