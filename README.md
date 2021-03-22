@@ -64,12 +64,11 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - [x] Create a seperate js file for classes and link to app.js
 - [x] Check for game win or lose by creating gameStatus function
     - [x] Set different views for win/lose
-- [] Impliment diagonal movement
-- [] Impliment a reset button
 - [] Impliment the 'flashlight'
     - [] Flashlight radius is centered around player
     - [] Gameboard is black outside flashlight radius
 - [] Create a start button to initialize the game view and start the game loop.
+- [] Impliment a reset button
 
 ## Stretch Goals
 - [] Zombies chase the survivor!
@@ -79,3 +78,5 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
     - [] numZombies, zombieLocations, numValuables, valuableLocations
 - [] Background music
 - [] Obstacles
+- [] Impliment diagonal movement
+

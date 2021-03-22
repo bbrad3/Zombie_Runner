@@ -1,5 +1,6 @@
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuable} from './classes.js'
 console.log('hello from app.js')
+
+import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, playerIdles} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -60,6 +61,19 @@ function gameStatus() {
     }
 }
 
+// GIF LOOP
+// survivor.gifPic('on')
+
+// const GIF_LOOP = setInterval(() => {
+//     // can i jusst call survivor.gifPic() to get new imgDiv
+//     console.log('the thing', survivor.gifPic())
+//     survivor.drawImage(survivor.gifPic())
+//     // let imgSrc = survivor.staticCharacter.getAttribute('src')
+//     // let imgIndex = imgSrc.slice(27, 28)
+// }, 100)
+
+let gifIndexTo3 = 0
+let timeSinceStart = 0
 // GAME LOOP
 const GAME_LOOP = setInterval(() => {
     // clear board
@@ -72,7 +86,16 @@ const GAME_LOOP = setInterval(() => {
             console.log('The zombies got you! You dead.')
         }
     })
-    survivor.render()
+
+    // gif draw
+
+    survivor.drawImage(playerIdles[0])
+    
+    // CIRCLE!!!
+    context.beginPath()
+    context.arc(100, 75, 50, 0, 2 * Math.PI)
+    context.stroke()
+    
 
     // checkCollision options
     if(checkCollision(valuable)) {
@@ -81,7 +104,9 @@ const GAME_LOOP = setInterval(() => {
     }
     valuable.render()
     gameStatus()
-    console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`)
-}, 50)
+    console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')
+    timeSinceStart += 100
+}, 100)
 
-export {context}
+
+export {context, canvas}
