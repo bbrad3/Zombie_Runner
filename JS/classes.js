@@ -81,11 +81,48 @@ class Valuable extends Rectangle {
     }
 }
 
-// class Levels {}
+class Level {
+    constructor(level, zombieLocations, valuableLocations) {
+        this.level = level
+        this.zombieLocations = zombieLocations.map((location) => {
+            const randX = Math.floor(50 + Math.random() * 650)
+            const randY = Math.floor(50 + Math.random() * 450)
+            return location = [randX, randY]
+        })
+        this.valuableLocations = valuableLocations.map((location) => {
+            const randX = Math.floor(50 + Math.random() * 650)
+            const randY = Math.floor(50 + Math.random() * 450)
+            return location = [randX, randY]
+        })
+        this.numValuables = valuableLocations.length
+    }
+
+    buildZombies() {
+        for(let zombie of this.zombieLocations) {
+            new Zombie(zombie[0],zombie[1])
+        }
+    }
+
+    buildValuables() {
+        for(let valuable of this.valuableLocations) {
+            new Valuable(valuable[0],valuable[1])
+        }
+    }
+}
 
 // new Survivor!
 const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, playerIdles, 0)
-// console.log('survivor', survivor.staticCharacter)
+
+// LEVELS!
+const LEVELS = {
+    level1: new Level(1, [[],[],[],[],[]], [[]]),
+    level2: new Level(2, [[],[],[],[],[],[],[]], [[],[]]),
+    level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]])
+}
+
+console.log(LEVELS.level1)
+console.log(LEVELS.level2)
+console.log(LEVELS.level3)
 // Zombies!
 const zombies = [
     new Zombie(350, 50),
@@ -94,6 +131,8 @@ const zombies = [
     new Zombie(420, 380),
     new Zombie(60, 350),
 ]
+
+
 // Valuable item!
 const valuable = new Valuable(310, 450)
 
@@ -107,20 +146,14 @@ class Circle {
     }
 
     hasCollided(other, survivorCenter) {
-        // console.log('made it this far')
         const dx = Math.abs(survivorCenter[0] - other.center()[0])
         const dy = Math.abs(survivorCenter[1] - other.center()[1])
-        // console.log(dx, 'dx, dy', dy)
-        // console.log(survivorCenter[0], 'thisCenterx', other.center()[0], 'otherCenterx')
         const distance = Math.sqrt(dx * dx + dy * dy)
-        // console.log(distance, 'distance')
 
         const radius1 = this.radius
         const radius2 = other.w / 2
         const sumRadii = radius1 + radius2 + 30
-        // console.log(sumRadii, 'sumRadii')
 
-        // console.log('x', hitOnX, 'y', hitOnY)
         if(distance < sumRadii) {
             if(other.constructor === Zombie) {
                 console.log('hit zombie')
@@ -150,4 +183,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed}
+export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed}
