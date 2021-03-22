@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -88,17 +88,6 @@ function gameStatus() {
     }
 }
 
-// GIF LOOP
-// survivor.gifPic('on')
-
-// const GIF_LOOP = setInterval(() => {
-//     // can i jusst call survivor.gifPic() to get new imgDiv
-//     console.log('the thing', survivor.gifPic())
-//     survivor.drawImage(survivor.gifPic())
-//     // let imgSrc = survivor.staticCharacter.getAttribute('src')
-//     // let imgIndex = imgSrc.slice(27, 28)
-// }, 100)
-
 let gifIndexTo3 = 0
 let timeSinceStart = 0
 // GAME LOOP
@@ -109,6 +98,7 @@ const GAME_LOOP = setInterval(() => {
     
     // check collision and determine render for zombies
     zombies.forEach(zombie => {
+        zombie.drawImage(zombieIdles[0])
         zombie.render()
         if(checkCollision(zombie)) {
             console.log('The zombies got you! You dead.')

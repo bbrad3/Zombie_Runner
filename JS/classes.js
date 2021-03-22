@@ -43,7 +43,7 @@ class Rectangle {
     }    
 
     drawImage() {
-        context.drawImage(this.staticCharacter, this.x, this.y, this.w, this.h)
+        context.drawImage(this.staticCharacter, 7, 2, 18, 28, this.x, this.y, this.w, this.h)
     }
 
     render() { // ^^^ may draw img instead
@@ -71,18 +71,18 @@ class Rectangle {
 
 class Zombie extends Rectangle {
     constructor(x, y) {
-        super(x, y, 32, 32, 'red', 1, zombieIdles, 0)
+        super(x, y, 20, 32, 'rgba(50,0,0,0.3)', 1, zombieIdles, 0)
     }
 }
 
 class Valuable extends Rectangle {
     constructor(x, y) {
-        super(x, y, 32, 32, 'yellow', 0, zombieIdles, 0)
+        super(x, y, 20, 20, 'yellow', 0, zombieIdles, 0)
     }
 }
 
 // new Survivor!
-const survivor = new Rectangle(50, 50, 32, 32, 'rgba(50, 0, 0, 0.5)', 10, playerIdles, 0)
+const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, playerIdles, 0)
 // console.log('survivor', survivor.staticCharacter)
 // Zombies!
 const zombies = [
@@ -154,4 +154,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles}
+export {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles}
