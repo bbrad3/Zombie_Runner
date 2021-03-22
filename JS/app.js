@@ -47,21 +47,21 @@ function checkCollision(body) {
             return true
         }
     }
-    const ghostCircleStats = spotLight.hasCollided(body, survivor.center())
-    console.log(ghostCircleStats, 'ghostCircleStats')
-    if(ghostCircleStats[0]) {
-        if(ghostCircleStats[1] === 'zombie') {
-            console.log('zombie chase!')
-            setInterval(zombieChase(ghostCircleStats[2]), 1000)
+    if(body.constructor === Zombie) {
+        const ghostCircleStats = spotLight.hasCollided(body, survivor.center())
+        console.log(ghostCircleStats, 'ghostCircleStats')
+        if(ghostCircleStats[0]) {
+            if(ghostCircleStats[1] === 'zombie') {
+                console.log('zombie chase!')
+                setInterval(zombieChase(ghostCircleStats[2]), 1000)
+            }
+            console.log('ghostCircle COLLIDED!', ghostCircleStats[1])
         }
-        console.log('ghostCircle COLLIDED!', ghostCircleStats[1])
     }
 }
 
 function zombieChase(zombie) {
         console.log('chasing by:', zombie)
-        // const x = zombie.x
-        // const y = zombie.y
         const dx = survivor.x - zombie.x
         const dy = survivor.y - zombie.y
         if(dx < 0) { // survivor to left
