@@ -4,6 +4,7 @@ import {context, canvas} from './app.js'
 // DOM Selectors
 const playerIdles = document.querySelectorAll('.player-idle')
 const zombieIdles = document.querySelectorAll('.zombie-idle')
+const chestsClosed = document.querySelectorAll('.chest-closed')
 
 class Rectangle {
     constructor(x, y, w, h, color, speed, characterArr, characterIndex) {
@@ -46,15 +47,14 @@ class Rectangle {
         context.drawImage(this.staticCharacter, 7, 2, 18, 28, this.x, this.y, this.w, this.h)
     }
 
-    render() { // ^^^ may draw img instead
+    render() { // ^^^ may draw img instead; this just represents hitbox
         context.fillStyle = this.color
         context.fillRect(this.x, this.y, this.w, this.h)
     }
 
     hasCollided(other) {
-        // const ghostCircleX = this.center()
-        const hitOnX = this.rightEdge() >= other.leftEdge() && this.leftEdge() <= other.rightEdge()
-        const hitOnY = this.bottomEdge() >= other.topEdge() && this.topEdge() < other.bottomEdge()
+        const hitOnX = this.rightEdge() > other.leftEdge() && this.leftEdge() < other.rightEdge()
+        const hitOnY = this.bottomEdge() > other.topEdge() && this.topEdge() < other.bottomEdge()
         
 
         if(hitOnX && hitOnY) {
@@ -77,7 +77,7 @@ class Zombie extends Rectangle {
 
 class Valuable extends Rectangle {
     constructor(x, y) {
-        super(x, y, 20, 20, 'yellow', 0, zombieIdles, 0)
+        super(x, y, 20, 20, 'rgba(50,50,0,0.3)', 0, chestsClosed, 2)
     }
 }
 
@@ -133,20 +133,14 @@ class Circle {
          return [this.x + 15, this.y + 15]
     }
 
-    drawGhostCircle(x, y) {
-        context.beginPath()
-        context.arc(x + 15, y + 15, this.radius + 20, this.startAngle, this.endAngle)
-        context.stroke()
-    }
-
     radialGradient(survivorX, survivorY) {
         const survivorCenter = [survivorX + 15, survivorY + 15]
         // console.log('survivorCenter', survivorCenter)
         // (x0, y0, r0, x1, y1, r1)
         let gradient = context.createRadialGradient(survivorCenter[0], survivorCenter[1], this.radius - 50, survivorCenter[0], survivorCenter[1], this.radius)
         gradient.addColorStop(0, '#00000000')
-        gradient.addColorStop(.8, 'rgba(0,0,0,0.4)')
-        gradient.addColorStop(1, 'rgba(0,0,0,0.9)')
+        gradient.addColorStop(.9, 'rgba(0,0,0,0.4)')
+        gradient.addColorStop(1, 'rgba(0,0,0,0.88)')
 
         context.fillStyle = gradient
         context.fillRect(-10, -10, 1000, 1000)
@@ -154,4 +148,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles}
+export {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed}

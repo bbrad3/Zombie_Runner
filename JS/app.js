@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -114,12 +114,11 @@ const GAME_LOOP = setInterval(() => {
         context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
         console.log('ITEM COLLECTED!')
     }
+    valuable.drawImage(chestsClosed[2])
     valuable.render()
     gameStatus()
 
     // SPOTLIGHT!!!
-    // console.log(spotLight.center())
-    spotLight.drawGhostCircle(survivor.x, survivor.y)
     spotLight.radialGradient(survivor.x, survivor.y)
     
     console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')

@@ -80,3 +80,8 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - [] Obstacles
 - [] Impliment diagonal movement
 
+## Mentions
+### Character Assets
+    - https://fartfish.itch.io/zombie-game-asset-pack
+### Valuables Assets
+    - https://seliel-the-shaper.itch.io/treasure-chests
