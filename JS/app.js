@@ -4,6 +4,10 @@ import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, pla
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
+
+const startBtn = document.querySelector('#startBtn')
+const resetBtn = document.querySelector('#resetBtn')
+const gameStart = document.querySelector('#gameStart')
 const winMsg = document.querySelector('#winGame')
 const loseMsg = document.querySelector('#loseGame')
 
@@ -17,10 +21,6 @@ canvas.setAttribute('height', canvasHeight)
 const context = canvas.getContext('2d')
 
 // ================================
-
-// get keyboard inputs from user
-document.addEventListener('keydown', playerMovement)
-
 // player movement
 function playerMovement(e) {
     if(e.key === 'w') {
@@ -49,19 +49,19 @@ function checkCollision(body) {
     }
     if(body.constructor === Zombie) {
         const ghostCircleStats = spotLight.hasCollided(body, survivor.center())
-        console.log(ghostCircleStats, 'ghostCircleStats')
+        // console.log(ghostCircleStats, 'ghostCircleStats')
         if(ghostCircleStats[0]) {
             if(ghostCircleStats[1] === 'zombie') {
-                console.log('zombie chase!')
+                // console.log('zombie chase!')
                 setInterval(zombieChase(ghostCircleStats[2]), 1000)
             }
-            console.log('ghostCircle COLLIDED!', ghostCircleStats[1])
+            // console.log('ghostCircle COLLIDED!', ghostCircleStats[1])
         }
     }
 }
 
 function zombieChase(zombie) {
-        console.log('chasing by:', zombie)
+        // console.log('chasing by:', zombie)
         const dx = survivor.x - zombie.x
         const dy = survivor.y - zombie.y
         if(dx < 0) { // survivor to left
@@ -121,10 +121,21 @@ const GAME_LOOP = setInterval(() => {
     // SPOTLIGHT!!!
     spotLight.radialGradient(survivor.x, survivor.y)
     
-    console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')
+    // console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')
     // console.log(timeSinceStart, 'timeSinceStart')
     timeSinceStart += 100
 }, 50)
 
+
+// EVENT LISTENERS
+// get keyboard inputs from user
+document.addEventListener('keydown', playerMovement)
+startBtn.addEventListener('click', (e) => {
+    gameStart.style.opacity = '0'
+})
+resetBtn.addEventListener('click', () => {
+    // reset board to level 1
+    // gameStart.style.opacity = '1'
+})
 
 export {context, canvas}

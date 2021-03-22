@@ -20,7 +20,11 @@ canvas {
     background-color: rgb(139, 150, 141);
 }
 
-#winGame, #loseGame {
+button {
+    /* display: block; */
+}
+
+#winGame, #loseGame, #gameStart {
     width: 701px;
     height: 501px;
     margin: 0 auto;
@@ -30,6 +34,12 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#gameStart {
+    top: 188px;
+    left: calc((100vw / 2) - (701px / 2));
+    opacity: 1;
 }
 
 #winGame {

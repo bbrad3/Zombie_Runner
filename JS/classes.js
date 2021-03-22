@@ -81,6 +81,8 @@ class Valuable extends Rectangle {
     }
 }
 
+// class Levels {}
+
 // new Survivor!
 const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, playerIdles, 0)
 // console.log('survivor', survivor.staticCharacter)
