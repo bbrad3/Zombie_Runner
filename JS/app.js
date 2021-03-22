@@ -52,10 +52,28 @@ function checkCollision(body) {
     if(ghostCircleStats[0]) {
         if(ghostCircleStats[1] === 'zombie') {
             console.log('zombie chase!')
-            ghostCircleStats[3].chase()
+            setInterval(zombieChase(ghostCircleStats[2]), 1000)
         }
         console.log('ghostCircle COLLIDED!', ghostCircleStats[1])
     }
+}
+
+function zombieChase(zombie) {
+        console.log('chasing by:', zombie)
+        // const x = zombie.x
+        // const y = zombie.y
+        const dx = survivor.x - zombie.x
+        const dy = survivor.y - zombie.y
+        if(dx < 0) { // survivor to left
+            zombie.x -= zombie.speed
+        } else if(dx > 0) { // survivor to right
+            zombie.x += zombie.speed
+        }
+        if(dy < 0) { // survivor to up
+            zombie.y -= zombie.speed
+        } else if(dy > 0) { // survivor to down
+            zombie.y += zombie.speed
+        }
 }
 
 function gameStatus() {
@@ -88,10 +106,7 @@ const GAME_LOOP = setInterval(() => {
     // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
 
-    // SPOTLIGHT!!!
-    // console.log(spotLight.center())
-    spotLight.drawGhostCircle(survivor.x, survivor.y)
-    spotLight.radialGradient(survivor.x, survivor.y)
+    
     // check collision and determine render for zombies
     zombies.forEach(zombie => {
         zombie.render()
@@ -111,6 +126,12 @@ const GAME_LOOP = setInterval(() => {
     }
     valuable.render()
     gameStatus()
+
+    // SPOTLIGHT!!!
+    // console.log(spotLight.center())
+    spotLight.drawGhostCircle(survivor.x, survivor.y)
+    spotLight.radialGradient(survivor.x, survivor.y)
+    
     console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')
     // console.log(timeSinceStart, 'timeSinceStart')
     timeSinceStart += 100
