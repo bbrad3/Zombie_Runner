@@ -86,14 +86,14 @@ class Level {
     constructor(level, zombieLocations, valuableLocations) {
         this.level = level
         this.zombies = zombieLocations.map((location) => {
-            const randX = Math.floor(Math.random() * (700 - 150) + 150)
-            const randY = Math.floor(Math.random() * (500 - 150) + 150)
+            const randX = Math.floor(Math.random() * (650 - 150) + 150)
+            const randY = Math.floor(Math.random() * (450 - 150) + 150)
             console.log('zombie', randX, randY)
             return new Zombie(randX, randY)
         })
         this.valuables = valuableLocations.map((location) => {
-            const randX = Math.floor(Math.random() * (700 - 300) + 300)
-            const randY = Math.floor(Math.random() * (500 - 200) + 200)
+            const randX = Math.floor(Math.random() * (650 - 300) + 300)
+            const randY = Math.floor(Math.random() * (450 - 200) + 200)
             console.log('valuable', randX, randY)
             return new Valuable(randX, randY)
         })

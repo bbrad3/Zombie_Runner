@@ -75,15 +75,19 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - [x] CSS background
 - [x] Add some sweet character icons in place of the lame squares
 - [x] Create multiple levels with an object of levels
-    - [] numZombies, zombieLocations, numValuables, valuableLocations
+    - [x] numZombies, zombieLocations, numValuables, valuableLocations
 - [] Background music
 - [] Obstacles
 - [] Impliment diagonal movement
 
+## Known Bugs
+- [] Randomized zombie locations can be too close to each other
+- [] Hit detection can be triggered before visual cue
+
 ## Mentions
 ### Character Assets
-    - https://fartfish.itch.io/zombie-game-asset-pack
+- https://fartfish.itch.io/zombie-game-asset-pack
 ### Valuables Assets
-    - https://seliel-the-shaper.itch.io/treasure-chests
+- https://seliel-the-shaper.itch.io/treasure-chests
 ### Background Image
-    - ColourBox
+- ColourBox

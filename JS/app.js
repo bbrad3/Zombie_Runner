@@ -10,6 +10,7 @@ const resetBtn = document.querySelector('#resetBtn')
 const gameStart = document.querySelector('#gameStart')
 const winMsg = document.querySelector('#winGame')
 const loseMsg = document.querySelector('#loseGame')
+const levelSpan = document.querySelector('#levelSpan')
 
 // CANVAS SETUP
 const canvasWidth = getComputedStyle(canvas).width
@@ -85,13 +86,13 @@ function gameStatus() {
         console.log('YOU WIN!')
         winMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
-    } else if(survivor.alive && valuablesCollected === numValuables) {
-        // next level
+    } else if(survivor.alive && valuablesCollected === numValuables) { // next level
         survivor.itemsCollected = 0
         survivor.x = 50
         survivor.y = 50
         currentLevel++
         LEVELS[`level${currentLevel}`].buildLevel()
+        levelSpan.innerHTML = currentLevel
     } else if(!survivor.alive) {
         console.log('GAME OVER!')
         loseMsg.style.opacity = '1'
@@ -153,6 +154,7 @@ startBtn.addEventListener('click', (e) => {
 resetBtn.addEventListener('click', () => {
     // reset board to level 1; LEVELS.level1.builtLevel
     // gameStart.style.opacity = '1'
+    // levelSpan.innerHTML = '1'
 })
 
 export {context, canvas}
