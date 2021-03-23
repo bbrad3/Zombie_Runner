@@ -6,6 +6,8 @@ The user of the game plays as a survivor in a post-apocoliptic, zombie infested,
 
 I am building this game to learn more about and practice: HTML canvas, OOP, game developement, and a challenge.
 
+- If you want to add some levels for me clone the master branch and submit a pull request with a new level in classes.js!
+
 ## Game Rules
  1. The gameboard contains:
     - The survivor
@@ -40,7 +42,6 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 - As I move the player around the board, zombies come into my view. The zombies aren't moving. If I collide with a zombie, I die, a 'GAME OVER' message appears and I can't move my player.
 
 - As I move the player around the board, I can find valuables. If I collide with a valuable, the game ends, I see a 'YOU WIN' message.
-
 
 ## MVP Checklist
 - [x] Create a static gameboard using HTML, CSS, Canvas
@@ -86,8 +87,8 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 
 ## Mentions
 ### Character Assets
-- https://fartfish.itch.io/zombie-game-asset-pack
+- [fartfish](https://fartfish.itch.io/zombie-game-asset-pack)
 ### Valuables Assets
-- https://seliel-the-shaper.itch.io/treasure-chests
+- [seliel-the-shaper](https://seliel-the-shaper.itch.io/treasure-chests)
 ### Background Image
 - ColourBox
