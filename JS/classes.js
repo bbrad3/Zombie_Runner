@@ -78,6 +78,7 @@ class Zombie extends Rectangle {
 class Valuable extends Rectangle {
     constructor(x, y) {
         super(x, y, 20, 20, 'rgba(50,50,0,0.3)', 0, chestsClosed, 2)
+        this.beenCollidedWith = false
     }
 }
 
@@ -85,14 +86,16 @@ class Level {
     constructor(level, zombieLocations, valuableLocations) {
         this.level = level
         this.zombies = zombieLocations.map((location) => {
-            const randX = Math.floor(50 + Math.random() * 650)
-            const randY = Math.floor(50 + Math.random() * 450)
-            return location = [randX, randY]
+            const randX = Math.floor(Math.random() * (700 - 150) + 150)
+            const randY = Math.floor(Math.random() * (500 - 150) + 150)
+            console.log('zombie', randX, randY)
+            return new Zombie(randX, randY)
         })
         this.valuables = valuableLocations.map((location) => {
-            const randX = Math.floor(50 + Math.random() * 650)
-            const randY = Math.floor(50 + Math.random() * 450)
-            return location = [randX, randY]
+            const randX = Math.floor(Math.random() * (700 - 300) + 300)
+            const randY = Math.floor(Math.random() * (500 - 200) + 200)
+            console.log('valuable', randX, randY)
+            return new Valuable(randX, randY)
         })
         this.numValuables = valuableLocations.length
     }
@@ -101,7 +104,7 @@ class Level {
         for(let zombie of this.zombies) {
             new Zombie(zombie[0],zombie[1])
         }
-        for(let valuable of this.valuableLocations) {
+        for(let valuable of this.valuables) {
             new Valuable(valuable[0],valuable[1])
         }
     }
@@ -120,20 +123,21 @@ const LEVELS = {
 // console.log(LEVELS.level1)
 // console.log(LEVELS.level2)
 // console.log(LEVELS.level3)
+
 // Zombies!
-const zombies = [
-    new Zombie(350, 50),
-    new Zombie(260, 170),
-    new Zombie(570, 170),
-    new Zombie(420, 380),
-    new Zombie(60, 350),
-]
+// const zombies = [
+//     new Zombie(350, 50),
+//     new Zombie(260, 170),
+//     new Zombie(570, 170),
+//     new Zombie(420, 380),
+//     new Zombie(60, 350),
+// ]
 
 
 // Valuable item!
-const valuables = [
-    new Valuable(310, 450)
-]
+// const valuables = [
+//     new Valuable(310, 450)
+// ]
 
 class Circle {
     constructor(x, y, radius) {
@@ -174,7 +178,7 @@ class Circle {
         let gradient = context.createRadialGradient(survivorCenter[0], survivorCenter[1], this.radius - 50, survivorCenter[0], survivorCenter[1], this.radius)
         gradient.addColorStop(0, '#00000000')
         gradient.addColorStop(.9, 'rgba(0,0,0,0.4)')
-        gradient.addColorStop(1, 'rgba(0,0,0,0.88)')
+        gradient.addColorStop(1, 'rgba(0,0,0,0.5)')
 
         context.fillStyle = gradient
         context.fillRect(-10, -10, 1000, 1000)
@@ -182,4 +186,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuables, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}
+export {Rectangle, Zombie, Valuable, Level, survivor, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}

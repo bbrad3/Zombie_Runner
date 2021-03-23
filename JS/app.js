@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuables, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -42,7 +42,6 @@ function checkCollision(body) {
             survivor.color = '#00000000'
             return true
         } else if(collisionStats[1] === 'valuable'){
-            survivor.itemsCollected++
             // collisionStats[2].color = '#00000000'
             return true
         }
@@ -77,10 +76,22 @@ function zombieChase(zombie) {
 }
 
 function gameStatus() {
-    if(survivor.alive && survivor.itemsCollected === valuables.length) {
+    const numValuables = LEVELS[`level${currentLevel}`].valuables.length
+    const valuablesCollected = survivor.itemsCollected
+    const totalLevels = Object.entries(LEVELS).length
+    console.log(numValuables, valuablesCollected, totalLevels)
+
+    if(survivor.alive && valuablesCollected === numValuables && currentLevel === totalLevels) {
         console.log('YOU WIN!')
         winMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
+    } else if(survivor.alive && valuablesCollected === numValuables) {
+        // next level
+        survivor.itemsCollected = 0
+        survivor.x = 50
+        survivor.y = 50
+        currentLevel++
+        LEVELS[`level${currentLevel}`].buildLevel()
     } else if(!survivor.alive) {
         console.log('GAME OVER!')
         loseMsg.style.opacity = '1'
@@ -90,32 +101,36 @@ function gameStatus() {
 
 let gifIndexTo3 = 0
 let timeSinceStart = 0
+let currentLevel = 1
 // GAME LOOP
 const GAME_LOOP = setInterval(() => {
     // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
 
-    // check collision and determine render for zombies
-    zombies.forEach(zombie => {
+    // check collision and determine render for zombies and valuables
+    LEVELS[`level${currentLevel}`].zombies.forEach(zombie => {
         zombie.drawImage(zombieIdles[0])
         // zombie.render()
         if(checkCollision(zombie)) {
             console.log('The zombies got you! You dead.')
         }
     })
-
-    survivor.drawImage(playerIdles[0])
-    // survivor.render()
     
-    // checkCollision options
-    valuables.forEach(valuable => {
-        valuable.drawImage(chestsClosed[2])
-        // valuable.render()
-        if(checkCollision(valuable)) {
-            context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
+    LEVELS[`level${currentLevel}`].valuables.forEach(valuable => {
+        if(checkCollision(valuable) && !valuable.beenCollidedWith) {
+            survivor.itemsCollected++
+            valuable.beenCollidedWith = true
+            // context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
             console.log('ITEM COLLECTED!')
+        } else if(!valuable.beenCollidedWith) {
+            valuable.drawImage(chestsClosed[2])
+            // valuable.render()
         }
     })
+
+    // render survivor
+    survivor.drawImage(playerIdles[0])
+    // survivor.render()
     
     gameStatus()
 
@@ -133,7 +148,7 @@ const GAME_LOOP = setInterval(() => {
 document.addEventListener('keydown', playerMovement)
 startBtn.addEventListener('click', (e) => {
     gameStart.style.opacity = '0'
-    // LEVELS.level1.buildLevel()
+    LEVELS.level1.buildLevel()
 })
 resetBtn.addEventListener('click', () => {
     // reset board to level 1; LEVELS.level1.builtLevel
