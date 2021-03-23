@@ -95,9 +95,13 @@ class Level {
         this.zombies = zombieLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 150) + 150)
             const randY = Math.floor(Math.random() * (450 - 150) + 150)
-            const randIndex = Math.floor(Math.random() * 2)
-            console.log(randIndex)
-            const chosenZombie = whichZombie[randIndex]
+            // const randIndex = Math.floor(Math.random() * 2)
+            let chosenZombie = whichZombie[0]
+            if(location[0] === 'z') {
+                chosenZombie = whichZombie[0]
+            } else if(location[0] === 'c') {
+                chosenZombie = whichZombie[1]
+            }
 
             return new Zombie(randX, randY, chosenZombie[0], chosenZombie[1], chosenZombie[2])
         })
@@ -125,11 +129,11 @@ const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, player
 
 // LEVELS!
 const LEVELS = {
-    level1: new Level(1, [[],[],[],[],[]], [[]]),
-    level2: new Level(2, [[],[],[],[],[],[],[]], [[],[]]),
-    level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]]),
-    level4: new Level(4, [[],[],[],[],[],[],[],[],[]], [[],[],[]]),
-    level5: new Level(5, [[],[],[],[],[],[],[],[],[],[],[]], [[],[],[]])
+    level1: new Level(1, [['z'],['z'],['z'],['c'],['c']], [[]]),
+    level2: new Level(2, [['z'],['z'],['z'],['z'],['c'],['c'],['c']], [[],[]]),
+    level3: new Level(3, [['z'],['z'],['z'],['z'],['z'],['z'],['c'],['c'],['c']], [[],[]]),
+    level4: new Level(4, [['z'],['z'],['z'],['z'],['z'],['z'],['c'],['c'],['c']], [[],[],[]]),
+    level5: new Level(5, [['z'],['z'],['z'],['z'],['z'],['z'],['z'],['c'],['c'],['c'],['c']], [[],[],[]])
 }
 
 class Circle {
@@ -171,7 +175,7 @@ class Circle {
 
         gradient.addColorStop(0, '#00000000')
         gradient.addColorStop(.9, 'rgba(0,0,0,0.4)')
-        gradient.addColorStop(1, 'rgba(0,0,0,0.9)')
+        gradient.addColorStop(1, 'rgba(0,0,0,0.93)')
 
         context.fillStyle = gradient
         context.fillRect(-10, -10, 1000, 1000)
