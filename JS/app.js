@@ -148,11 +148,15 @@ const GAME_LOOP = setInterval(() => {
 document.addEventListener('keydown', playerMovement)
 startBtn.addEventListener('click', (e) => {
     gameStart.style.opacity = '0'
+    winMsg.style.opacity = '0'
+    loseMsg.style.opacity = '0'
     LEVELS.level1.buildLevel()
 })
 resetBtn.addEventListener('click', () => {
     LEVELS.level1.buildLevel()
     gameStart.style.opacity = '1'
+    winMsg.style.opacity = '0'
+    loseMsg.style.opacity = '0'
     levelSpan.innerHTML = '1'
 })
 
