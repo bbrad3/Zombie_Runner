@@ -12,6 +12,10 @@ const winMsg = document.querySelector('#winGame')
 const loseMsg = document.querySelector('#loseGame')
 const levelSpan = document.querySelector('#levelSpan')
 
+// GLOBAL VARIABLES
+let currentLevel = 1
+
+
 // CANVAS SETUP
 const canvasWidth = getComputedStyle(canvas).width
 const canvasHeight = getComputedStyle(canvas).height
@@ -80,7 +84,6 @@ function gameStatus() {
     const numValuables = LEVELS[`level${currentLevel}`].valuables.length
     const valuablesCollected = survivor.itemsCollected
     const totalLevels = Object.entries(LEVELS).length
-    console.log(numValuables, valuablesCollected, totalLevels)
 
     if(survivor.alive && valuablesCollected === numValuables && currentLevel === totalLevels) {
         console.log('YOU WIN!')
@@ -100,9 +103,6 @@ function gameStatus() {
     }
 }
 
-let gifIndexTo3 = 0
-let timeSinceStart = 0
-let currentLevel = 1
 // GAME LOOP
 const GAME_LOOP = setInterval(() => {
     // clear board
@@ -133,16 +133,11 @@ const GAME_LOOP = setInterval(() => {
     survivor.drawImage(playerIdles[0])
     // survivor.render()
     
-    gameStatus()
-
     // SPOTLIGHT!!!
     spotLight.radialGradient(survivor.x, survivor.y)
-    
-    // console.log('survivorOrigin', `(${survivor.x}, ${survivor.y})`, timeSinceStart, 'timeSinceStart')
-    // console.log(timeSinceStart, 'timeSinceStart')
-    timeSinceStart += 100
-}, 50)
 
+    gameStatus()
+}, 50)
 
 // EVENT LISTENERS
 // get keyboard inputs from user
@@ -152,9 +147,9 @@ startBtn.addEventListener('click', (e) => {
     LEVELS.level1.buildLevel()
 })
 resetBtn.addEventListener('click', () => {
-    // reset board to level 1; LEVELS.level1.builtLevel
-    // gameStart.style.opacity = '1'
-    // levelSpan.innerHTML = '1'
+    LEVELS.level1.buildLevel()
+    gameStart.style.opacity = '1'
+    levelSpan.innerHTML = '1'
 })
 
 export {context, canvas}

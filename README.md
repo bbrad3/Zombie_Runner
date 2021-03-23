@@ -68,7 +68,7 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
     - [x] Flashlight radius is centered around player
     - [x] Gameboard is black outside flashlight radius
 - [x] Create a start button to initialize the game view
-- [] Impliment a reset button
+- [x] Impliment a reset button
 
 ## Stretch Goals
 - [x] Zombies chase the survivor! But only when 'seen'

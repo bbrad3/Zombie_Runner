@@ -88,13 +88,11 @@ class Level {
         this.zombies = zombieLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 150) + 150)
             const randY = Math.floor(Math.random() * (450 - 150) + 150)
-            console.log('zombie', randX, randY)
             return new Zombie(randX, randY)
         })
         this.valuables = valuableLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 300) + 300)
             const randY = Math.floor(Math.random() * (450 - 200) + 200)
-            console.log('valuable', randX, randY)
             return new Valuable(randX, randY)
         })
         this.numValuables = valuableLocations.length
@@ -119,25 +117,6 @@ const LEVELS = {
     level2: new Level(2, [[],[],[],[],[],[],[]], [[],[]]),
     level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]])
 }
-
-// console.log(LEVELS.level1)
-// console.log(LEVELS.level2)
-// console.log(LEVELS.level3)
-
-// Zombies!
-// const zombies = [
-//     new Zombie(350, 50),
-//     new Zombie(260, 170),
-//     new Zombie(570, 170),
-//     new Zombie(420, 380),
-//     new Zombie(60, 350),
-// ]
-
-
-// Valuable item!
-// const valuables = [
-//     new Valuable(310, 450)
-// ]
 
 class Circle {
     constructor(x, y, radius) {
@@ -173,12 +152,12 @@ class Circle {
 
     radialGradient(survivorX, survivorY) {
         const survivorCenter = [survivorX + 15, survivorY + 15]
-        // console.log('survivorCenter', survivorCenter)
-        // (x0, y0, r0, x1, y1, r1)
+
         let gradient = context.createRadialGradient(survivorCenter[0], survivorCenter[1], this.radius - 50, survivorCenter[0], survivorCenter[1], this.radius)
+
         gradient.addColorStop(0, '#00000000')
         gradient.addColorStop(.9, 'rgba(0,0,0,0.4)')
-        gradient.addColorStop(1, 'rgba(0,0,0,0.5)')
+        gradient.addColorStop(1, 'rgba(0,0,0,0.9)')
 
         context.fillStyle = gradient
         context.fillRect(-10, -10, 1000, 1000)
