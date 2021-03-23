@@ -4,6 +4,7 @@ import {context, canvas} from './app.js'
 // DOM Selectors
 const playerIdles = document.querySelectorAll('.player-idle')
 const zombieIdles = document.querySelectorAll('.zombie-idle')
+const chonkerIdles = document.querySelectorAll('.chonker-idle')
 const chestsClosed = document.querySelectorAll('.chest-closed')
 
 class Rectangle {
@@ -69,9 +70,15 @@ class Rectangle {
     }
 }
 
+const whichZombie = [
+    [2, zombieIdles, 'zombie'],
+    [1, chonkerIdles, 'chonker']
+]
+
 class Zombie extends Rectangle {
-    constructor(x, y) {
-        super(x, y, 20, 32, 'rgba(50,0,0,0.3)', 1, zombieIdles, 0)
+    constructor(x, y, speed, characterArr, type) {
+        super(x, y, 20, 32, 'rgba(50,0,0,0.3)', speed, characterArr, 0)
+        this.type = type
     }
 }
 
@@ -88,11 +95,16 @@ class Level {
         this.zombies = zombieLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 150) + 150)
             const randY = Math.floor(Math.random() * (450 - 150) + 150)
-            return new Zombie(randX, randY)
+            const randIndex = Math.floor(Math.random() * 2)
+            console.log(randIndex)
+            const chosenZombie = whichZombie[randIndex]
+
+            return new Zombie(randX, randY, chosenZombie[0], chosenZombie[1], chosenZombie[2])
         })
         this.valuables = valuableLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 300) + 300)
             const randY = Math.floor(Math.random() * (450 - 200) + 200)
+
             return new Valuable(randX, randY)
         })
         this.numValuables = valuableLocations.length
@@ -100,10 +112,10 @@ class Level {
 
     buildLevel() {
         for(let zombie of this.zombies) {
-            new Zombie(zombie[0],zombie[1])
+            new Zombie(zombie[0], zombie[1], zombie.speed, zombie.characterArr, zombie.type)
         }
         for(let valuable of this.valuables) {
-            new Valuable(valuable[0],valuable[1])
+            new Valuable(valuable[0], valuable[1])
         }
     }
 }
@@ -115,7 +127,9 @@ const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, player
 const LEVELS = {
     level1: new Level(1, [[],[],[],[],[]], [[]]),
     level2: new Level(2, [[],[],[],[],[],[],[]], [[],[]]),
-    level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]])
+    level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]]),
+    level4: new Level(4, [[],[],[],[],[],[],[],[],[]], [[],[],[]]),
+    level5: new Level(5, [[],[],[],[],[],[],[],[],[],[],[]], [[],[],[]])
 }
 
 class Circle {
@@ -165,4 +179,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, Level, survivor, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}
+export {Rectangle, Zombie, Valuable, Level, survivor, spotLight, playerIdles, zombieIdles, chonkerIdles, chestsClosed, LEVELS}

@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, spotLight, playerIdles, zombieIdles, chonkerIdles, chestsClosed, LEVELS} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -69,14 +69,14 @@ function zombieChase(zombie) {
         const dx = survivor.x - zombie.x
         const dy = survivor.y - zombie.y
         if(dx < 0) { // survivor to left
-            zombie.x -= zombie.speed
+            zombie.x -= zombie.speed / 2
         } else if(dx > 0) { // survivor to right
-            zombie.x += zombie.speed
+            zombie.x += zombie.speed / 2
         }
         if(dy < 0) { // survivor to up
-            zombie.y -= zombie.speed
+            zombie.y -= zombie.speed / 2
         } else if(dy > 0) { // survivor to down
-            zombie.y += zombie.speed
+            zombie.y += zombie.speed / 2
         }
 }
 
@@ -110,7 +110,11 @@ const GAME_LOOP = setInterval(() => {
 
     // check collision and determine render for zombies and valuables
     LEVELS[`level${currentLevel}`].zombies.forEach(zombie => {
-        zombie.drawImage(zombieIdles[0])
+        if(zombie.type === 'zombie') {
+            zombie.drawImage(zombieIdles[0])
+        } else if(zombie.type === 'chonker') {
+            zombie.drawImage(chonkerIdles[0])
+        }
         // zombie.render()
         if(checkCollision(zombie)) {
             console.log('The zombies got you! You dead.')
