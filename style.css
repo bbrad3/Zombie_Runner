@@ -1,6 +1,16 @@
 body {
-    background-color: aliceblue;
+    background-image: url('https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX41510543.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     text-align: center;
+    color: whitesmoke;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 2px 2px 1px black, 2px 2px 5px rgb(26, 254, 254);
+}
+
+p {
+    font-size: 1.1rem;
+    margin: 0;
 }
 
 #gameTitle {
@@ -21,16 +31,24 @@ canvas {
 }
 
 button {
-    /* display: block; */
+    width: 100px;
+    height: 35px;
+    margin: 8px 20px;
+    border-radius: 0.8rem;
+    border-color: rgb(133, 133, 133) rgb(26, 254, 254) rgb(26, 254, 254) rgb(133, 133, 133);
+    background-color: black;
+    color: whitesmoke;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 1px black, 2px 2px 5px rgb(26, 254, 254);
 }
 
 #winGame, #loseGame, #gameStart {
-    width: 701px;
-    height: 501px;
+    width: 702px;
+    height: 502px;
     margin: 0 auto;
     position: absolute;
     background-color: black;
-    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;

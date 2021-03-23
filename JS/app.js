@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -99,14 +99,14 @@ const GAME_LOOP = setInterval(() => {
     // check collision and determine render for zombies
     zombies.forEach(zombie => {
         zombie.drawImage(zombieIdles[0])
-        zombie.render()
+        // zombie.render()
         if(checkCollision(zombie)) {
             console.log('The zombies got you! You dead.')
         }
     })
 
     survivor.drawImage(playerIdles[0])
-    survivor.render()
+    // survivor.render()
     
 
     // checkCollision options
@@ -115,7 +115,7 @@ const GAME_LOOP = setInterval(() => {
         console.log('ITEM COLLECTED!')
     }
     valuable.drawImage(chestsClosed[2])
-    valuable.render()
+    // valuable.render()
     gameStatus()
 
     // SPOTLIGHT!!!
@@ -132,6 +132,7 @@ const GAME_LOOP = setInterval(() => {
 document.addEventListener('keydown', playerMovement)
 startBtn.addEventListener('click', (e) => {
     gameStart.style.opacity = '0'
+    // LEVELS.level1.buildLevel()
 })
 resetBtn.addEventListener('click', () => {
     // reset board to level 1

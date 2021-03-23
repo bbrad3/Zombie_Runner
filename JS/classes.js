@@ -84,12 +84,12 @@ class Valuable extends Rectangle {
 class Level {
     constructor(level, zombieLocations, valuableLocations) {
         this.level = level
-        this.zombieLocations = zombieLocations.map((location) => {
+        this.zombies = zombieLocations.map((location) => {
             const randX = Math.floor(50 + Math.random() * 650)
             const randY = Math.floor(50 + Math.random() * 450)
             return location = [randX, randY]
         })
-        this.valuableLocations = valuableLocations.map((location) => {
+        this.valuables = valuableLocations.map((location) => {
             const randX = Math.floor(50 + Math.random() * 650)
             const randY = Math.floor(50 + Math.random() * 450)
             return location = [randX, randY]
@@ -97,13 +97,10 @@ class Level {
         this.numValuables = valuableLocations.length
     }
 
-    buildZombies() {
-        for(let zombie of this.zombieLocations) {
+    buildLevel() {
+        for(let zombie of this.zombies) {
             new Zombie(zombie[0],zombie[1])
         }
-    }
-
-    buildValuables() {
         for(let valuable of this.valuableLocations) {
             new Valuable(valuable[0],valuable[1])
         }
@@ -183,4 +180,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed}
+export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}
