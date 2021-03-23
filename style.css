@@ -43,6 +43,28 @@ button {
     text-shadow: 2px 2px 1px black, 2px 2px 5px rgb(26, 254, 254);
 }
 
+footer {
+    background-color: rgba(128, 128, 128, 0.4);
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul {
+    width: 700px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 #winGame, #loseGame, #gameStart {
     width: 702px;
     height: 502px;
@@ -56,19 +78,19 @@ button {
 
 #gameStart {
     top: 188px;
-    left: calc((100vw / 2) - (701px / 2));
+    left: calc((100vw / 2) - (716px / 2));
     opacity: 1;
 }
 
 #winGame {
     top: 188px;
-    left: calc((100vw / 2) - (701px / 2));
+    left: calc((100vw / 2) - (716px / 2));
     opacity: 0;
 }
 
 #loseGame {
     top: 188px;
-    left: calc((100vw / 2) - (701px / 2));
+    left: calc((100vw / 2) - (716px / 2));
     opacity: 0;
 }
 

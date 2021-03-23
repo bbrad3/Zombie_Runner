@@ -72,9 +72,9 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 
 ## Stretch Goals
 - [x] Zombies chase the survivor! But only when 'seen'
-- [] CSS background
+- [x] CSS background
 - [x] Add some sweet character icons in place of the lame squares
-- [] Create multiple levels with an object of levels
+- [x] Create multiple levels with an object of levels
     - [] numZombies, zombieLocations, numValuables, valuableLocations
 - [] Background music
 - [] Obstacles
@@ -85,3 +85,5 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
     - https://fartfish.itch.io/zombie-game-asset-pack
 ### Valuables Assets
     - https://seliel-the-shaper.itch.io/treasure-chests
+### Background Image
+    - ColourBox

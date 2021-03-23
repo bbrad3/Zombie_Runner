@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
+import {Rectangle, Zombie, Valuable, survivor, zombies, valuables, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -43,7 +43,7 @@ function checkCollision(body) {
             return true
         } else if(collisionStats[1] === 'valuable'){
             survivor.itemsCollected++
-            valuable.color = '#00000000'
+            // collisionStats[2].color = '#00000000'
             return true
         }
     }
@@ -77,7 +77,7 @@ function zombieChase(zombie) {
 }
 
 function gameStatus() {
-    if(survivor.alive && survivor.itemsCollected === 1) {
+    if(survivor.alive && survivor.itemsCollected === valuables.length) {
         console.log('YOU WIN!')
         winMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
@@ -95,7 +95,6 @@ const GAME_LOOP = setInterval(() => {
     // clear board
     context.clearRect(0, 0, canvas.width, canvas.height)
 
-    
     // check collision and determine render for zombies
     zombies.forEach(zombie => {
         zombie.drawImage(zombieIdles[0])
@@ -108,14 +107,16 @@ const GAME_LOOP = setInterval(() => {
     survivor.drawImage(playerIdles[0])
     // survivor.render()
     
-
     // checkCollision options
-    if(checkCollision(valuable)) {
-        context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
-        console.log('ITEM COLLECTED!')
-    }
-    valuable.drawImage(chestsClosed[2])
-    // valuable.render()
+    valuables.forEach(valuable => {
+        valuable.drawImage(chestsClosed[2])
+        // valuable.render()
+        if(checkCollision(valuable)) {
+            context.clearRect(valuable.x, valuable.y, valuable.w, valuable.h)
+            console.log('ITEM COLLECTED!')
+        }
+    })
+    
     gameStatus()
 
     // SPOTLIGHT!!!
@@ -135,7 +136,7 @@ startBtn.addEventListener('click', (e) => {
     // LEVELS.level1.buildLevel()
 })
 resetBtn.addEventListener('click', () => {
-    // reset board to level 1
+    // reset board to level 1; LEVELS.level1.builtLevel
     // gameStart.style.opacity = '1'
 })
 

@@ -61,7 +61,7 @@ class Rectangle {
             if(other.constructor === Zombie) {
                 return [true, 'zombie']
             } else if(other.constructor === Valuable) {
-                return [true, 'valuable']
+                return [true, 'valuable', other]
             }
         } else {
             return false
@@ -117,9 +117,9 @@ const LEVELS = {
     level3: new Level(3, [[],[],[],[],[],[],[],[],[]], [[],[]])
 }
 
-console.log(LEVELS.level1)
-console.log(LEVELS.level2)
-console.log(LEVELS.level3)
+// console.log(LEVELS.level1)
+// console.log(LEVELS.level2)
+// console.log(LEVELS.level3)
 // Zombies!
 const zombies = [
     new Zombie(350, 50),
@@ -131,7 +131,9 @@ const zombies = [
 
 
 // Valuable item!
-const valuable = new Valuable(310, 450)
+const valuables = [
+    new Valuable(310, 450)
+]
 
 class Circle {
     constructor(x, y, radius) {
@@ -180,4 +182,4 @@ class Circle {
 }
 const spotLight = new Circle(0, 0, 100)
 
-export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuable, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}
+export {Rectangle, Zombie, Valuable, Level, survivor, zombies, valuables, spotLight, playerIdles, zombieIdles, chestsClosed, LEVELS}
