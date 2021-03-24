@@ -87,19 +87,19 @@ a {
 
 #gameStart {
     top: 188px;
-    left: calc((100vw / 2) - (716px / 2));
+    left: calc((100vw / 2) - (702px / 2));
     opacity: 1;
 }
 
 #winGame {
     top: 188px;
-    left: calc((100vw / 2) - (716px / 2));
+    left: calc((100vw / 2) - (702px / 2));
     opacity: 0;
 }
 
 #loseGame {
     top: 188px;
-    left: calc((100vw / 2) - (716px / 2));
+    left: calc((100vw / 2) - (702px / 2));
     opacity: 0;
 }
 
@@ -107,7 +107,7 @@ a {
     background-color: #00000000;
     flex-direction: row;
     top: 188px;
-    left: calc((100vw / 2) - (716px / 2));
+    left: calc((100vw / 2) - (702px / 2));
     opacity: 0;
     font-size: 6rem;
     transition: all 2s;
