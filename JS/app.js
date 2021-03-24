@@ -16,6 +16,9 @@ const levelSpan = document.querySelector('#levelSpan')
 
 // GLOBAL VARIABLES
 let currentLevel = 1
+const numValuables = LEVELS[`level${currentLevel}`].valuables.length
+const valuablesCollected = survivor.itemsCollected
+const totalLevels = Object.entries(LEVELS).length
 
 
 // CANVAS SETUP
@@ -83,10 +86,6 @@ function zombieChase(zombie) {
 }
 
 function gameStatus() {
-    const numValuables = LEVELS[`level${currentLevel}`].valuables.length
-    const valuablesCollected = survivor.itemsCollected
-    const totalLevels = Object.entries(LEVELS).length
-
     if(survivor.alive && valuablesCollected === numValuables && currentLevel === totalLevels) {
         console.log('YOU WIN!')
         winMsg.style.opacity = '1'
@@ -98,7 +97,7 @@ function gameStatus() {
         currentLevel++
         LEVELS[`level${currentLevel}`].buildLevel()
         
-        levelSpan.innerHTML = currentLevel
+        levelSpan.innerHTML = `${currentLevel}/${totalLevels}`
         levelDisplay()
     } else if(!survivor.alive) {
         console.log('GAME OVER!')
@@ -173,7 +172,7 @@ resetBtn.addEventListener('click', () => {
 function startFresh() {
     winMsg.style.opacity = '0'
     loseMsg.style.opacity = '0'
-    levelSpan.innerHTML = '1'
+    levelSpan.innerHTML = `1/${totalLevels}`
     currentLevel = 1
     LEVELS.level1.buildLevel()
 }
