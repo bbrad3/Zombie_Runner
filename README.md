@@ -84,7 +84,7 @@ I am building this game to learn more about and practice: HTML canvas, OOP, game
 ## Known Bugs
 - [] Randomized zombie locations can be too close to each other
 - [] Hit detection can be triggered before visual cue
-- [] Reset Button not working!
+- [x] Reset Button not working!
 
 ## Mentions
 ### Character Assets
