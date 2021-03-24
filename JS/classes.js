@@ -29,19 +29,19 @@ class Rectangle {
     }
 
     topEdge() {
-        return this.y
+        return this.y + 4
     }
 
     bottomEdge() {
-        return this.y + this.h
+        return this.y + this.h - 4
     }
 
     leftEdge() {
-        return this.x
+        return this.x + 3
     }
 
     rightEdge() {
-        return this.x + this.w
+        return this.x + this.w - 3
     }    
 
     drawImage() {
@@ -92,7 +92,7 @@ class Valuable extends Rectangle {
 class Level {
     constructor(level, zombieLocations, valuableLocations) {
         this.level = level
-        this.zombies = zombieLocations.map((location) => {
+        this.zombies = this.zombies = zombieLocations.map((location) => {
             const randX = Math.floor(Math.random() * (650 - 150) + 150)
             const randY = Math.floor(Math.random() * (450 - 150) + 150)
             // const randIndex = Math.floor(Math.random() * 2)
@@ -105,16 +105,19 @@ class Level {
 
             return new Zombie(randX, randY, chosenZombie[0], chosenZombie[1], chosenZombie[2])
         })
-        this.valuables = valuableLocations.map((location) => {
-            const randX = Math.floor(Math.random() * (650 - 300) + 300)
-            const randY = Math.floor(Math.random() * (450 - 200) + 200)
+        this.valuables = this.valuables = valuableLocations.map((location) => {
+            const randX = Math.floor(Math.random() * (675 - 250) + 250)
+            const randY = Math.floor(Math.random() * (475 - 100) + 100)
 
             return new Valuable(randX, randY)
         })
         this.numValuables = valuableLocations.length
+        this.survivorOrigin = 50
     }
 
     buildLevel() {
+        survivor.x = this.survivorOrigin
+        survivor.y = this.survivorOrigin
         for(let zombie of this.zombies) {
             new Zombie(zombie[0], zombie[1], zombie.speed, zombie.characterArr, zombie.type)
         }
@@ -126,6 +129,7 @@ class Level {
 
 // new Survivor!
 const survivor = new Rectangle(50, 50, 20, 32, 'rgba(50, 0, 0, 0.5)', 10, playerIdles, 0)
+
 
 // LEVELS!
 const LEVELS = {

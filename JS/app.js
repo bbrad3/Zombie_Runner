@@ -1,6 +1,6 @@
 console.log('hello from app.js')
 
-import {Rectangle, Zombie, Valuable, survivor, spotLight, playerIdles, zombieIdles, chonkerIdles, chestsClosed, LEVELS} from './classes.js'
+import {Rectangle, Zombie, Valuable, Level, survivor, spotLight, playerIdles, zombieIdles, chonkerIdles, chestsClosed, LEVELS} from './classes.js'
 
 // DOM selectors
 const canvas = document.querySelector('canvas')
@@ -10,6 +10,8 @@ const resetBtn = document.querySelector('#resetBtn')
 const gameStart = document.querySelector('#gameStart')
 const winMsg = document.querySelector('#winGame')
 const loseMsg = document.querySelector('#loseGame')
+const nextLevelMsg = document.querySelector('#nextLevelMsg')
+const nextLevel = document.querySelector('#nextLevel')
 const levelSpan = document.querySelector('#levelSpan')
 
 // GLOBAL VARIABLES
@@ -95,12 +97,22 @@ function gameStatus() {
         survivor.y = 50
         currentLevel++
         LEVELS[`level${currentLevel}`].buildLevel()
+        
         levelSpan.innerHTML = currentLevel
+        levelDisplay()
     } else if(!survivor.alive) {
         console.log('GAME OVER!')
         loseMsg.style.opacity = '1'
         clearInterval(GAME_LOOP)
     }
+}
+
+function levelDisplay() {
+    nextLevel.innerHTML = currentLevel
+
+    nextLevelMsg.style.opacity = '1'
+    setTimeout(() => {nextLevelMsg.style.opacity = '0'}, 1000)
+    
 }
 
 // GAME LOOP
@@ -148,16 +160,22 @@ const GAME_LOOP = setInterval(() => {
 document.addEventListener('keydown', playerMovement)
 startBtn.addEventListener('click', (e) => {
     gameStart.style.opacity = '0'
-    winMsg.style.opacity = '0'
-    loseMsg.style.opacity = '0'
-    LEVELS.level1.buildLevel()
+    startFresh()
+    levelDisplay()
 })
 resetBtn.addEventListener('click', () => {
-    LEVELS.level1.buildLevel()
+    window.location.reload(); // easy fix for now
+    return false // ^^that needs this
     gameStart.style.opacity = '1'
+    startFresh()
+})
+
+function startFresh() {
     winMsg.style.opacity = '0'
     loseMsg.style.opacity = '0'
     levelSpan.innerHTML = '1'
-})
+    currentLevel = 1
+    LEVELS.level1.buildLevel()
+}
 
 export {context, canvas}

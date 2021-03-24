@@ -74,7 +74,7 @@ a {
     color: whitesmoke;
 }
 
-#winGame, #loseGame, #gameStart {
+#winGame, #loseGame, #gameStart, #nextLevelMsg {
     width: 702px;
     height: 502px;
     margin: 0 auto;
@@ -101,6 +101,21 @@ a {
     top: 188px;
     left: calc((100vw / 2) - (716px / 2));
     opacity: 0;
+}
+
+#nextLevelMsg {
+    background-color: #00000000;
+    flex-direction: row;
+    top: 188px;
+    left: calc((100vw / 2) - (716px / 2));
+    opacity: 0;
+    font-size: 6rem;
+    transition: all 2s;
+    -webkit-transition: all 2s;
+}
+
+#nextLevel {
+    margin-left: 40px;
 }
 
 .imgs {
